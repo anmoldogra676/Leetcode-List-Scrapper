@@ -119,6 +119,10 @@ async function getTopicDiffListingFromLeetcode(link, topic,level) {
     let fullLoginLink =await cTab.evaluate( returnRequiredLink,".nav-right> .nav-menu a", 4 )
     await cTab.goto(fullLoginLink)
     await cTab.waitForSelector(".input__2W4f ", { visible: true });
+    await cTab.type("input[class='input__2W4f '] ", credential[0], { delay: 500 }) // username
+    await cTab.type("#id_password", credential[1], { delay: 500 })// password
+    await cTab.click("#signin_btn");
+    await cTab.waitForSelector(".input__2W4f ", { visible: true });
     let ProblemAllLink=await cTab.evaluate( returnRequiredLink,".nav-item-container__16kF> a", 2 )
     await cTab.goto(ProblemAllLink) // problemset  page
     await cTab.waitForSelector(".fa.fa-caret-down", { visible: true }); // click on tag
