@@ -64,7 +64,7 @@ async function fullLisT(topic) {
         let allTabsArr = await browser.pages();
         cTab = allTabsArr[0];
         let fullList = await getFullListingFromLeetcode(link, topic);
-        console.table(fullList)
+        // console.table(fullList)
     } 
     catch (err) {
 
@@ -84,7 +84,7 @@ async function TopicLisT(topic) {
         let allTabsArr = await browser.pages();
         cTab = allTabsArr[0];
         let fullList = await getTopicListingFromLeetcode(link, topic);
-        console.table(fullList)
+        // console.table(fullList)
 
 
     } catch (err) {
@@ -118,11 +118,11 @@ async function getTopicDiffListingFromLeetcode(link, topic,level) {
     await cTab.waitForSelector(".nav-right> .nav-menu a", { visible: true });
     let fullLoginLink =await cTab.evaluate( returnRequiredLink,".nav-right> .nav-menu a", 4 )
     await cTab.goto(fullLoginLink)
-    await cTab.waitForSelector(".input__2W4f ", { visible: true });
-    await cTab.type("input[class='input__2W4f '] ", credential[0], { delay: 500 }) // username
+    await cTab.waitForSelector(".input__2o8B ", { visible: true });
+    await cTab.type("input[class='input__2o8B '] ", credential[0], { delay: 500 }) // username
     await cTab.type("#id_password", credential[1], { delay: 500 })// password
     await cTab.click("#signin_btn");
-    await cTab.waitForSelector(".input__2W4f ", { visible: true });
+    await cTab.waitForSelector(".input__2o8B ", { visible: true });
     let ProblemAllLink=await cTab.evaluate( returnRequiredLink,".nav-item-container__16kF> a", 2 )
     await cTab.goto(ProblemAllLink) // problemset  page
     await cTab.waitForSelector(".fa.fa-caret-down", { visible: true }); // click on tag
@@ -159,8 +159,8 @@ async function getTopicListingFromLeetcode(link, topic) {
     await cTab.waitForSelector(".nav-right> .nav-menu a", { visible: true });
     let fullLoginLink =await cTab.evaluate( returnRequiredLink,".nav-right> .nav-menu a", 4 )
     cTab.goto(fullLoginLink)
-    await cTab.waitForSelector(".input__2W4f ", { visible: true });
-    await cTab.type("input[class='input__2W4f '] ", credential[0], { delay: 500 }) // username
+    await cTab.waitForSelector(".input__2o8B ", { visible: true });
+    await cTab.type("input[class='input__2o8B '] ", credential[0], { delay: 500 }) // username
     await cTab.type("#id_password", credential[1], { delay: 500 })// password
     await cTab.click("#signin_btn");
     
@@ -194,14 +194,14 @@ async function getFullListingFromLeetcode(link, topic) {
     await cTab.waitForSelector(".nav-right> .nav-menu a", { visible: true });
     let fullLoginLink =await cTab.evaluate( returnRequiredLink,".nav-right> .nav-menu a", 4 )
     cTab.goto(fullLoginLink)
-    await cTab.waitForSelector(".input__2W4f ", { visible: true });
-    await cTab.type("input[class='input__2W4f '] ", credential[0], { delay: 500 }) // username
+    await cTab.waitForSelector(".input__2o8B ", { visible: true });
+    await cTab.type("input[class='input__2o8B '] ", credential[0], { delay: 500 }) // username
     await cTab.type("#id_password", credential[1], { delay: 500 })// password
     await cTab.click("#signin_btn");
     
     let ProblemAllLink=await cTab.evaluate( returnRequiredLink,".nav-item-container__16kF> a", 2 )
     cTab.goto(ProblemAllLink)
-     ProblemFn.helperFn(cTab, topic)
+    ProblemFn.helperFn(cTab, topic)
 
 }
     
@@ -210,9 +210,13 @@ function returnRequiredLink(selector1, idx){
     let login = document.querySelectorAll(selector1)[idx].getAttribute("href");
     let fullLoginLink ="https://leetcode.com"+login;
     return fullLoginLink
+    
 }
+    
+
 
 // get input so that I can change the behaviour of code
+
 function getTopic(query) {
     
     const rl = readline.createInterface({
@@ -240,5 +244,5 @@ function clickonTag(selector, idx){
 
    
 module.exports= {
-    cTab  
+    cTab
 }
